@@ -55,28 +55,28 @@ class App extends React.Component {
     }})
   }
   calculateFaceLocation = (data) => {
-    const clarifaiFace = data.output[0].data.regions[0].region_info.bounding_box;
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById('inputimage');
     const width = Number(image.width);
     const height = Number(image.height);
     return {
       leftCol: clarifaiFace.left_col * width,
-      bottomRow: height - (clarifaiFace.bottom_row * height),
       topRow: clarifaiFace.top_row * height,
-      rightCol: width - (clarifaiFace.rightCol * width) 
+      rightCol: width - (clarifaiFace.right_col * width),
+      bottomRow: height - (clarifaiFace.bottom_row * height)
     }
   }
 
   displayFaceBox = (box) => {
-    this.setState({box:box})
+    this.setState({box:box});
   }
   onInputChange = (event) => {
       this.setState({input: event.target.value})
   }
   onSubmit = () => {
     this.setState({imageUrl: this.state.input});
-    fetch('http://localhost:3000/image', {
-      method: 'put',
+    fetch('http://localhost:3000/imageurl', {
+      method: 'post',
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({
         input: this.state.input
@@ -99,8 +99,8 @@ class App extends React.Component {
         .catch(console.log)
       }
       this.displayFaceBox(this.calculateFaceLocation(response))
-    .catch(err => console.log(err))
-    });
+    })
+    .catch(err => console.log(err));
   }
   onRouteChange = (home) => {
     this.setState(Object.assign(this.state, {route: home,
