@@ -1,0 +1,10 @@
+.form{
+    width: 700px;
+    background: linear-gradient(89deg, #ff5edf 0%, #04c8de 100%);
+    opacity: 0.8;
+}
+button{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+}
