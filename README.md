@@ -8,3 +8,6 @@ I made use of [Clarifai API](https://www.clarifai.com/) - Helps with the Image r
 I used React for the Front End, and a little bit of Redux(I know this wasn't necessary but ...)
 
 Oh yeah, and a ton of npm packages lol... just check my package.json.
+
+
+### Note: you'd need to get your api key to run this, thanks!
